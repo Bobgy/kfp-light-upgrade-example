@@ -1,7 +1,45 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: my-namespace
+namespace: kubeflow
 
 bases:
- - github.com/kubeflow/pipelines//manifests/namespaced-install?ref=0.1.24
+#  - github.com/kubeflow/pipelines//manifests/kustomize/env/dev?ref=master
+  - ../pipelines/manifests/kustomize/env/dev
+
+images:
+# - name: gcr.io/ml-pipeline/api-server
+#   newName: gcr.io/ml-pipeline-test/api-server
+#   newTag: latest
+# - name: gcr.io/ml-pipeline/frontend
+#   newName: gcr.io/ml-pipeline-test/frontend
+#   newTag: latest
+# - name: gcr.io/ml-pipeline/persistenceagent
+#   newName: gcr.io/ml-pipeline-test/persistenceagent
+#   newTag: latest
+# - name: gcr.io/ml-pipeline/scheduledworkflow
+#   newName: gcr.io/ml-pipeline-test/scheduledworkflow
+#   newTag: latest
+# - name: gcr.io/ml-pipeline/viewer-crd-controller
+#   newName: gcr.io/ml-pipeline-test/viewer-crd-controller
+#   newTag: latest
+# - name: gcr.io/ml-pipeline/visualization-server
+#   newName: gcr.io/ml-pipeline-test/visualization-server
+#   newTag: latest
+- name: gcr.io/tfx-oss-public/ml_metadata_store_server
+  newName: gcr.io/kubeflowtryouts/ml_metadata_store_server
+  newTag: latest
+- name: gcr.io/ml-pipeline/api-server
+  newTag: 0.1.29
+- name: gcr.io/ml-pipeline/persistenceagent
+  newTag: 0.1.29
+- name: gcr.io/ml-pipeline/scheduledworkflow
+  newTag: 0.1.29
+- name: gcr.io/ml-pipeline/frontend
+  newTag: 0.1.29
+- name: gcr.io/ml-pipeline/viewer-crd-controller
+  newTag: 0.1.29
+- name: gcr.io/ml-pipeline/inverse-proxy-agent
+  newTag: 0.1.29
+- name: gcr.io/ml-pipeline/visualization-server
+  newTag: 0.1.29
