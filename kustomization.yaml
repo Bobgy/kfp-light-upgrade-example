@@ -43,3 +43,6 @@ images:
   newTag: 0.1.29
 - name: gcr.io/ml-pipeline/visualization-server
   newTag: 0.1.29
+
+resources:
+  - mysql-credential.yaml
